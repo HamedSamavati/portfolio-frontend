@@ -1,0 +1,87 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  background-color: white;
+  border-radius: 35px;
+  padding: 20px 30px;
+  a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 700;
+    &:hover {
+      color: #000000;
+      text-decoration: underline;
+    }
+    &.active {
+      color: green;
+      text-decoration: underline;
+    }
+  }
+}
+
+.login-button {
+}
+.register-button {
+}
+.theme-button {
+  border: 1px solid #fff;
+  background-color: transparent;
+  cursor: pointer;
+  //   padding: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    border: 1px solid #000;
+  }
+}
+
+.contact-button {
+  border: 1px solid #000;
+  background-color: transparent;
+  cursor: pointer;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 3px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  &:hover {
+    background-color: #ffff;
+  }
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+}
+#language {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 3px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  &:hover {
+    color: gray;
+  }
+}
