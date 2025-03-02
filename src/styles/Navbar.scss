@@ -1,0 +1,114 @@
+.navbar {
+  // Dynamic gradient background
+  background: linear-gradient(
+    65deg,
+    var(--gradient-color-1),
+    var(--gradient-color-2),
+    var(--gradient-color-3)
+  );
+  background-size: 200% 200%;
+
+  // Smoother transition for route changes
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Glass effect
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  // Optional overlay for better readability
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+  }
+
+  // Subtle shadow
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+
+  // Ensure content is above overlay
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  // Add active state styles
+  &[data-active="true"] {
+    background-size: 150% 150%;
+  }
+
+  // Enhance the gradient animation
+  animation: gradient-shift 10s ease infinite;
+
+  // Style navbar content
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  // Optional: Style links
+  a {
+    color: white;
+    // text-decoration: none;
+    // font-weight: 500;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+// Smoother gradient animation
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// Add hover effect for active links
+.nav-link {
+  &.active {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: currentColor;
+      transform: scaleX(1);
+      transition: transform 0.3s ease;
+    }
+  }
+
+  &:hover {
+    opacity: 0.8;
+    transform: translateY(-1px);
+  }
+}
+
+// Optional: Add responsive design
+@media (max-width: 768px) {
+  .navbar {
+    // padding: 1rem;
+    // height: 60px;
+  }
+}
+
+// Optional: Add dark mode support
+@media (prefers-color-scheme: dark) {
+  .navbar {
+    &::before {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+}
