@@ -1,0 +1,85 @@
+@import "./variables";
+@import "./breakpoints";
+
+.back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  background-size: 300% 100%;
+  animation: slide-gradient 8s linear infinite;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(100px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  &.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.hide {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  .arrow-icon {
+    color: white;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+
+    .arrow-icon {
+      transform: translateY(-3px);
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.bright-theme {
+  .back-to-top {
+    background: $secondary-dark;
+  }
+}
+
+@keyframes slide-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+
+    .arrow-icon {
+      font-size: 20px;
+    }
+  }
+}

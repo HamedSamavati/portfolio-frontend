@@ -1,0 +1,169 @@
+@import "./variables.scss";
+@import "./breakpoints.scss";
+
+.bright-theme {
+  .hero p,
+  .hero h2 {
+    color: $text-dark;
+    filter: drop-shadow(0 0 20px $primary-bright);
+  }
+  .hero h1 {
+    color: $highlight-bright;
+    filter: drop-shadow(0 0 20px $primary-bright);
+  }
+  .hero .cta-button {
+    background: $highlight-bright;
+    color: $primary-dark;
+  }
+  .contact-cta .contact-button {
+    background: $highlight-bright;
+    filter: drop-shadow(0 0 20px $primary-bright);
+  }
+}
+
+.hero {
+  padding: 0 $spacing-xl;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background: transparent;
+  a {
+    text-decoration: none;
+    color: $primary-dark;
+  }
+}
+
+.hero h1 {
+  padding-bottom: 01em;
+  font-family: $font-heading;
+  font-weight: 500;
+  font-size: 48px;
+  color: $highlight-dark;
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in-out forwards;
+}
+.hero h2 {
+  font-family: $font-heading;
+  font-weight: 400;
+  font-size: $font-xlarge;
+  color: $text-light;
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in-out forwards;
+  padding-bottom: 1em;
+}
+
+.hero p {
+  font-size: 20px;
+  font-family: $font-heading;
+  color: $text-light;
+  max-width: 600px;
+  opacity: 0;
+  padding-bottom: 0.6em;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+.hero .cta-button {
+  margin-top: 24px;
+  padding: 14px 28px;
+  font-size: 18px;
+  background: $highlight-dark;
+  color: $primary-dark;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+  opacity: 0;
+  animation: fadeIn 2.5s ease-in-out forwards;
+}
+
+.hero .cta-button:hover {
+  background: lighten($highlight-dark, 10%);
+  box-shadow: 0px 4px 12px rgba($highlight-dark, 0.4);
+}
+
+/* Subtle Fade-In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact-cta {
+  text-align: center;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.contact-cta p {
+  font-size: 18px;
+  color: $text-light;
+  margin-bottom: $spacing-lg;
+}
+
+.contact-cta .contact-button {
+  background: $highlight-dark;
+  color: $primary-dark;
+  max-width: 200px;
+  padding: 8px 24px;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+  margin-bottom: $spacing-lg;
+}
+
+.contact-cta .contact-button:hover {
+  background: lighten($highlight-dark, 10%);
+}
+
+.bright-theme {
+  .hero {
+    background: transparent;
+
+    h1 {
+      color: $highlight-bright;
+    }
+
+    h2,
+    p {
+      color: $text-dark;
+    }
+
+    .cta-button {
+      background: $highlight-bright;
+      color: $primary-dark;
+
+      &:hover {
+        background: lighten($highlight-bright, 10%);
+        box-shadow: 0px 4px 12px rgba($highlight-bright, 0.4);
+      }
+    }
+  }
+}
+
+.bright-theme {
+  .contact-cta {
+    background: transparent;
+
+    p {
+      color: $text-dark;
+    }
+
+    .contact-button {
+      background: $highlight-bright;
+
+      &:hover {
+        background: lighten($highlight-bright, 10%);
+      }
+    }
+  }
+}

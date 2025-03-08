@@ -1,0 +1,48 @@
+// Breakpoint variables based on Bootstrap 5 and Tailwind CSS standards
+$breakpoints: (
+  "xs": 375px,
+  // Modern mobile phones (iPhone SE to iPhone Pro)
+  "sm": 640px,
+  // Tailwind's small breakpoint
+  "md": 768px,
+  // Tablets (iPad Mini/Air)
+  "lg": 1024px,
+  // Tailwind's laptop breakpoint
+  "xl": 1280px,
+  // Tailwind's desktop breakpoint
+  "2xl": 1536px, // Tailwind's large desktop breakpoint
+);
+
+// Mixin for min-width breakpoints (mobile-first approach)
+@mixin breakpoint-up($size) {
+  @media screen and (min-width: map-get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+// Mixin for max-width breakpoints (use sparingly in mobile-first design)
+@mixin breakpoint-down($size) {
+  @media screen and (max-width: (map-get($breakpoints, $size) - 1px)) {
+    @content;
+  }
+}
+
+// Mixin for between breakpoints (use sparingly)
+@mixin breakpoint-between($min, $max) {
+  @media screen and (min-width: map-get($breakpoints, $min)) and (max-width: (map-get($breakpoints, $max) - 1px)) {
+    @content;
+  }
+}
+
+// Container max-widths (based on Bootstrap 5 with some Tailwind influence)
+$container-max-widths: (
+  "sm": 600px,
+  // Comfortable reading width for small devices
+  "md": 720px,
+  // Tablet optimal reading width
+  "lg": 960px,
+  // Laptop comfortable width
+  "xl": 1140px,
+  // Desktop optimal width
+  "2xl": 1320px, // Large desktop max width
+);

@@ -1,0 +1,64 @@
+@import "variables";
+@import "theme";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: transparent !important;
+  color: $secondary-dark;
+  font-family: $font-body;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+
+#root {
+  min-height: 100vh;
+  background: transparent !important;
+}
+
+// Dark Theme Styles (default)
+h1,
+h2,
+h3 {
+  color: $highlight-dark;
+  font-family: $font-heading;
+}
+
+p {
+  color: $secondary-dark;
+}
+
+// Bright Theme Styles
+.bright-theme {
+  background: transparent !important;
+  color: $text-dark;
+
+  h1,
+  h2,
+  h3 {
+    color: $highlight-bright;
+  }
+
+  p {
+    color: $text-dark;
+  }
+}
+
+// Buttons
+// button {
+//   background: $button-dark-bg;
+//   color: $button-dark-text;
+// }
+
+// .bright-theme button {
+//   background: $button-bright-bg;
+//   color: $button-bright-text;
+// }

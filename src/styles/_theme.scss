@@ -1,0 +1,21 @@
+@import "variables";
+
+@mixin dark-theme {
+  background-color: $primary-dark;
+  color: $text-light;
+}
+
+@mixin bright-theme {
+  background-color: $primary-bright;
+  color: $text-dark;
+}
+
+@mixin button-dark {
+  background: $button-dark-bg;
+  color: $button-dark-text;
+}
+
+@mixin button-bright {
+  background: $button-bright-bg;
+  color: $button-bright-text;
+}

@@ -1,0 +1,134 @@
+@import "variables";
+@import "breakpoints";
+
+.footer {
+  background: transparent;
+  border-top: 1px solid rgba($secondary-dark, 0.1);
+  padding: $spacing-lg 0 $spacing-lg;
+  margin-top: auto; // Pushes footer to bottom if content is short
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: $container-width;
+    // margin: 0 auto;
+    padding: 0 $spacing-lg;
+  }
+
+  // Grid layout for columns
+  .footer-grid {
+    display: grid;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-xl;
+
+    @include breakpoint-up("md") {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  // Column styling
+  .footer-col {
+    width: 100%;
+    h4 {
+      font-family: $font-heading;
+      font-size: $font-medium;
+      margin-bottom: $spacing-md;
+      color: $highlight-dark;
+      @include breakpoint-up("md") {
+        font-size: $font-large;
+      }
+    }
+
+    p {
+      font-family: $font-body;
+      font-size: $font-medium;
+      color: $text-light;
+      line-height: 1.6;
+    }
+  }
+
+  // Navigation links
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    a {
+      font-family: $font-body;
+      color: $text-light;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: $font-medium;
+
+      &:hover {
+        color: $highlight-dark;
+      }
+    }
+  }
+
+  // Social section
+  .footer-social {
+    margin-top: $spacing-xl;
+    display: flex;
+    align-items: flex-start;
+
+    p {
+      margin-bottom: $spacing-md;
+      color: $text-light;
+      margin-right: $spacing-lg;
+    }
+  }
+
+  // Bottom bar
+  .footer-bottom {
+    width: 100%;
+    text-align: center;
+    padding-top: $spacing-lg;
+    border-top: 1px solid rgba($secondary-dark, 0.1);
+
+    p {
+      font-family: $font-body;
+      color: $text-light;
+      font-size: $font-small;
+      opacity: 0.8;
+    }
+  }
+}
+
+// Bright theme overrides - using parent selector for stronger specificity
+.bright-theme .footer {
+  background: transparent;
+  border-top: 1px solid rgba($secondary-bright, 0.1);
+  .footer-col {
+    h4 {
+      color: $highlight-bright;
+    }
+
+    p {
+      color: $text-dark;
+    }
+  }
+
+  .footer-nav a {
+    color: $text-dark;
+
+    &:hover {
+      color: $highlight-bright;
+    }
+  }
+
+  .footer-social p {
+    color: $text-dark;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba($secondary-bright, 0.1);
+
+    p {
+      color: $text-dark;
+    }
+  }
+}

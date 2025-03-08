@@ -1,0 +1,65 @@
+@import "variables";
+@import "breakpoints";
+@import "theme";
+
+.bright-theme {
+  .subscription-container {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.subscription-container {
+  width: 100%;
+  @include breakpoint-up(md) {
+    width: 350px;
+    height: 200px;
+  }
+  padding: 10px 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  input {
+    border: solid 1px gray;
+    height: 2.1em;
+    padding: 0 10px;
+    outline: none;
+    margin-bottom: 20px;
+    background: transparent;
+    color: $text-light;
+    .bright-theme & {
+      color: $text-dark;
+    }
+  }
+  button {
+    .bright-theme & {
+      color: $text-dark;
+    }
+    background-color: transparent;
+    border: solid 1px gray;
+    border-left: none;
+    height: 2.1em;
+    padding: 0 10px;
+    color: $text-light;
+    &:hover {
+      transform: translateY(1px);
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+      color: $highlight-bright;
+    }
+  }
+  h3 {
+    padding: 5px;
+    margin: 10px;
+    font-size: $font-large;
+    @include breakpoint-up(md) {
+      font-size: $font-medium;
+    }
+  }
+  p {
+    margin-bottom: 15px;
+    font-family: $font-body;
+    font-size: $font-small;
+  }
+}

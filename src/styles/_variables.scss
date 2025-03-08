@@ -1,0 +1,55 @@
+// Dark Mode Colors
+$primary-dark: #0a0a0a; // Main Background
+$highlight-dark: #ffd700; // Gold Accents
+$secondary-dark: #c0c0c0; // Silver Text/Icons
+
+// Bright Mode Colors
+$primary-bright: #f8f9fa; // Soft White Background
+$highlight-bright: #e1c16e; // Champagne Gold
+$secondary-bright: #2d2d2d; // Charcoal Gray
+
+// Text Colors
+$text-light: #f8f9fa;
+$text-dark: #2d2d2d;
+
+// Button Colors
+$button-dark-bg: $highlight-dark;
+$button-dark-text: $primary-dark;
+
+$button-bright-bg: $highlight-bright;
+$button-bright-text: $primary-bright;
+
+// Fonts
+$font-heading: "Playfair Display";
+$font-body: "Belleza", sans-serif;
+$font-alt: "Raleway", sans-serif;
+
+// Font Sizes
+$font-small: 14px;
+$font-medium: 16px;
+$font-large: 20px;
+$font-xlarge: 32px;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// Container Width
+$container-width: 1200px;
+
+// Button Styles
+$button-padding: 12px 24px;
+$button-radius: 8px;
+$button-border: none;
+
+// Shadows
+$shadow-soft: 0px 4px 10px rgba(0, 0, 0, 0.1);
+$shadow-strong: 0px 6px 20px rgba(0, 0, 0, 0.2);
+
+// Z-Index
+$z-navbar: 1000;
+$z-modal: 2000;
+$z-tooltip: 3000;

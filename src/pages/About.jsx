@@ -1,6 +1,10 @@
-import React from "react";
+import Skills from "../components/Skills";
 function About() {
-  return <div>About</div>;
+  return (
+    <>
+      <Skills />
+    </>
+  );
 }
 
 export default About;

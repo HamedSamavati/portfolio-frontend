@@ -8,6 +8,7 @@ import About from "../pages/About.jsx";
 import Contact from "../pages/Contact";
 import Projects from "../pages/Projects";
 import News from "../pages/News";
+import NewsPage from "../pages/NewsPage";
 import Experience from "../pages/Experience";
 import Resume from "../pages/Resume";
 import Login from "../pages/Login";
@@ -29,6 +30,7 @@ function AppRoutes() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/news" element={<News />} />
+          <Route path="/news/:id" element={<NewsPage />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/login" element={<Login />} />

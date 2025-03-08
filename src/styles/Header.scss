@@ -1,123 +1,377 @@
+@import "variables";
+@import "theme";
+@import "breakpoints";
+
 * {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: $font-body;
 }
 
-header {
+// Add spacing for fixed header
+body {
+  padding-top: 60px; // Adjust this value based on your header height
+
+  @include breakpoint-up("lg") {
+    padding-top: 0; // Remove padding on desktop where header is sticky
+  }
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
-  margin: 0 auto;
+  padding: 12px 24px;
+  background: rgba($primary-dark, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: $z-navbar;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(-100%);
+
+  @include breakpoint-up("lg") {
+    position: sticky;
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  &.visible {
+    transform: translateY(0);
+  }
+
+  .bright-theme & {
+    background: rgba($primary-bright, 0.4);
+  }
 }
 
-nav {
+.navbar {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  width: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(20px);
-  border-radius: 35px;
-  padding: 20px 30px;
-  a {
-    text-decoration: none;
-    color: black;
-    font-size: 1.2rem;
-    font-weight: 700;
-    &:hover {
-      color: #000000;
-      text-decoration: underline;
-    }
-    &.active {
-      color: green;
-      text-decoration: underline;
-    }
+  justify-content: center;
+  gap: 20px;
+  @include breakpoint-up("lg") {
+    flex-direction: row;
   }
 }
 
-.login-register-buttons {
-  button {
-    border: none;
-    height: 40px;
-    border-radius: 3px;
-    background-color: #fff;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 400;
-    &:hover {
-      background-color: beige;
-    }
-  }
-  .login-button {
-    border-radius: 20px 0 0 20px;
-    padding-left: 15px;
-  }
-  .register-button {
-    border-radius: 0 20px 20px 0;
-    padding-right: 15px;
-  }
+.header-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .theme-button {
-  border: 1px solid #fff;
-  background-color: transparent;
+  border: none;
+  background: none;
+  border-radius: 0;
+  font-size: 1.2rem;
+  line-height: 0.9;
+  padding: 10px;
   cursor: pointer;
-  //   padding: 10px;
-  width: 40px;
-  height: 40px;
-  border-radius: 3px;
-  font-size: 1.3rem;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    border: 1px solid $secondary-dark;
+  }
+}
+.bright-theme {
+  .theme-button {
+    background: none;
+  }
+}
+
+.header-center {
+  flex-grow: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
-  &:hover {
-    border: 1px solid #000;
+  a {
+    text-decoration: none;
+    color: $text-light;
+    font-size: 1.2rem;
+    line-height: 0.9;
+    padding: 7px 10px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      background: $highlight-dark;
+      border: none;
+      color: $primary-dark;
+    }
+    &.active {
+      color: $highlight-bright;
+      border: none;
+    }
   }
+}
+.bright-theme {
+  a {
+    color: $text-dark;
+  }
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
 
 .contact-button {
-  border: 1px solid #000;
-  background-color: transparent;
-  cursor: pointer;
-  height: 40px;
-  padding: 0 10px;
-  border-radius: 3px;
-  font-size: 1.2rem;
-  font-weight: 700;
-  &:hover {
-    background-color: #ffff;
+  display: none;
+  @include breakpoint-up("lg") {
+    display: block;
   }
+  border: none;
+  background: $highlight-dark;
+  color: $primary-dark;
+  padding: 7px 30px;
+  border-bottom: 1px solid $primary-bright;
+  border-right: 1px solid $primary-bright;
+  text-decoration: none;
+  cursor: pointer;
   a {
     text-decoration: none;
-    color: #000;
+    color: $primary-dark;
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+  }
+  &:hover {
+    background: $highlight-bright;
+    border: none;
   }
 }
+
 .custom-select {
+  width: 60px;
+  margin: 0 20px;
   position: relative;
   cursor: pointer;
   padding: 0.5rem;
-  background: transparent;
-  //   border: 1px solid currentColor;
-
+  background: none;
+  z-index: 2000;
   span {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: $highlight-bright;
     gap: 10px;
   }
   .select-options {
+    z-index: 2000;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: transparent;
-    backdrop-filter: blur(5px); // Optional: adds a blur effect
-
+    background: $secondary-dark;
+    backdrop-filter: blur(5px);
     .option {
       padding: 0.5rem;
-
       &:hover {
         background: rgba(255, 255, 255, 0.1);
       }
     }
   }
+}
+.login-register-buttons-mobile,
+.login-register-buttons {
+  display: none;
+  @include breakpoint-up("lg") {
+    display: block;
+  }
+  button {
+    border: none;
+    height: 40px;
+    border-radius: 3px;
+    background-color: $secondary-dark;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 400;
+    &:hover {
+      background-color: $secondary-bright;
+      color: $primary-bright;
+    }
+  }
+  .login-button {
+    padding-right: 10px;
+    border-radius: 20px 0 0 20px;
+    padding-left: 15px;
+    border-right: 1px solid $primary-dark;
+  }
+
+  .register-button {
+    padding-left: 10px;
+    border-radius: 0 20px 20px 0;
+    padding-right: 15px;
+  }
+}
+.bright-theme {
+  .login-button {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .mobile-menu-items {
+    a {
+      color: $primary-dark;
+    }
+    button {
+      color: $primary-dark;
+      &:hover {
+        color: $primary-bright;
+      }
+    }
+  }
+}
+
+// Hamburger Menu Styles
+.hamburger-button {
+  width: 35px;
+  cursor: pointer;
+  padding: 10px 0;
+  z-index: calc($z-navbar + 1);
+  background: none;
+  border: none;
+  margin: 0 40px 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @include breakpoint-up("lg") {
+    display: none;
+  }
+
+  span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: $text-light;
+    margin: 3px 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &.active {
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+  }
+
+  .bright-theme & span {
+    background-color: $text-dark;
+  }
+}
+.bright-theme {
+  .hamburger-button {
+    background: none;
+    span {
+      background-color: $text-dark;
+    }
+  }
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background: rgba($primary-dark, 0.98);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 80px 20px 20px;
+  transition: right 0.3s ease-in-out;
+  z-index: calc($z-navbar - 1);
+  overflow-y: auto;
+
+  @include breakpoint-up("lg") {
+    display: none;
+  }
+
+  &.active {
+    right: 0;
+  }
+
+  .bright-theme & {
+    background: rgba($primary-bright, 0.98);
+  }
+}
+
+// Backdrop overlay
+.mobile-menu-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: calc($z-navbar - 2);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+
+  &.active {
+    display: block;
+    opacity: 1;
+  }
+}
+
+// Hide regular menu items on mobile
+.header-center {
+  @include breakpoint-down("lg") {
+    display: none;
+  }
+}
+
+// Mobile menu items
+.mobile-menu-items {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  a {
+    text-decoration: none;
+    color: $text-light;
+    font-size: 1.2rem;
+    line-height: 0.9;
+    padding: 7px 10px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      border: none;
+      color: $highlight-bright;
+      filter: drop-shadow(0 0 20px $highlight-bright);
+    }
+    &.active {
+      color: $highlight-bright;
+      border: none;
+    }
+  }
+
+  .contact-button-mobile {
+    cursor: pointer;
+    width: 80%;
+    padding: 10px 0;
+    border: none;
+    text-align: center;
+    background: $highlight-dark;
+    color: $primary-dark;
+    &:hover {
+      background: $highlight-bright;
+      filter: none;
+      color: $text-dark;
+    }
+  }
+}
+.login-register-buttons-mobile {
+  display: flex;
+  margin-top: 20px;
 }
