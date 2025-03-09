@@ -5,14 +5,22 @@ import Navbar from "./Navbar";
 import { PiSunDimLight, PiMoonStarsLight } from "react-icons/pi";
 import { FaChevronDown } from "react-icons/fa";
 import "../styles/Header.scss";
+import Login from "./Login";
+import Register from "./Register";
+import { FaPowerOff } from "react-icons/fa";
 
 function Header() {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLang, setSelectedLang] = useState("En");
-  const { theme, toggleTheme } = useContext(ThemeContext);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
 
   // Handle scroll visibility
   useEffect(() => {
@@ -26,6 +34,21 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+      setUser(JSON.parse(localStorage.getItem("user")));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUser(null);
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  };
+
   // Handle mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -36,6 +59,15 @@ function Header() {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     document.body.style.overflow = "";
+  };
+
+  const handleRegister = () => {
+    setIsRegisterOpen(isRegisterOpen === true ? false : true);
+    setIsLoginOpen(false);
+  };
+  const handleLogin = () => {
+    setIsLoginOpen(isLoginOpen === true ? false : true);
+    setIsRegisterOpen(false);
   };
 
   const languages = [
@@ -100,11 +132,39 @@ function Header() {
           </div>
         </div>
 
-        <div className="login-register-buttons">
-          <button className="login-button">Login</button>
-          <button className="register-button">Register</button>
-        </div>
+        {isLoggedIn ? (
+          <div className="user-logout-container">
+            <p className="user-name">Welcome, {user.firstName} </p>
+            <button className="logout-button" onClick={handleLogout}>
+              <FaPowerOff />
+            </button>
+          </div>
+        ) : (
+          <div className="login-register-buttons">
+            <button className="login-button" onClick={handleLogin}>
+              Login
+            </button>
+            <button className="register-button" onClick={handleRegister}>
+              Register
+            </button>
+          </div>
+        )}
       </header>
+
+      {isLoginOpen && (
+        <Login
+          setUser={setUser}
+          setIsLoggedIn={setIsLoggedIn}
+          setIsLoginOpen={setIsLoginOpen}
+        />
+      )}
+      {isRegisterOpen && (
+        <Register
+          setUser={setUser}
+          setIsLoggedIn={setIsLoggedIn}
+          setIsRegisterOpen={setIsRegisterOpen}
+        />
+      )}
 
       {/* Mobile Menu */}
       <div className={`mobile-menu ${isMobileMenuOpen ? "active" : ""}`}>
@@ -117,14 +177,27 @@ function Header() {
           >
             Contact
           </Link>
-          <div className="login-register-buttons-mobile">
-            <button className="login-button" onClick={closeMobileMenu}>
-              Login
-            </button>
-            <button className="register-button" onClick={closeMobileMenu}>
-              Register
-            </button>
-          </div>
+
+          {!isLoggedIn && (
+            <div className="login-register-buttons-mobile">
+              <button
+                className="login-button"
+                onClick={() =>
+                  setIsLoginOpen(isLoginOpen === true ? false : true)
+                }
+              >
+                Login
+              </button>
+              <button
+                className="register-button"
+                onClick={() =>
+                  setIsRegisterOpen(isRegisterOpen === true ? false : true)
+                }
+              >
+                Register
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

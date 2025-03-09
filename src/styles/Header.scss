@@ -375,3 +375,62 @@ body {
   display: flex;
   margin-top: 20px;
 }
+.register-container {
+}
+.register-container,
+.login-container {
+  form {
+    z-index: 2000;
+    position: fixed;
+    top: 70px;
+    right: 30px;
+    background: $secondary-dark;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-sm;
+    gap: $spacing-sm;
+    background: rgba($secondary-dark, 0.3);
+  }
+  input {
+    width: 100%;
+    padding: $spacing-sm;
+    border: none;
+    background: rgba($secondary-dark, 0.9);
+    color: $primary-bright;
+    outline: none;
+  }
+  button {
+    width: 100%;
+    padding: $spacing-sm;
+    border: none;
+    background: $highlight-dark;
+    color: $primary-dark;
+    &:hover {
+      background: $highlight-bright;
+    }
+  }
+}
+.user-name {
+  color: $primary-bright;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.user-logout-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+}
+.logout-button {
+  font-size: 1rem;
+  line-height: 0.3;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $primary-bright;
+  .bright-theme & {
+    color: $primary-dark;
+  }
+}

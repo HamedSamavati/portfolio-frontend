@@ -11,7 +11,6 @@ import News from "../pages/News";
 import NewsPage from "../pages/NewsPage";
 import Experience from "../pages/Experience";
 import Resume from "../pages/Resume";
-import Login from "../pages/Login";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import ProjectManagement from "../pages/admin/ProjectManagement";
 import NewsManagement from "../pages/admin/NewsManagement";
@@ -33,7 +32,6 @@ function AppRoutes() {
           <Route path="/news/:id" element={<NewsPage />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/resume" element={<Resume />} />
-          <Route path="/login" element={<Login />} />
         </Route>
 
         <Route
