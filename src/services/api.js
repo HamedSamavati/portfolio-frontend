@@ -2,7 +2,43 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "http://localhost:8000/api",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
 });
+
+// Add request interceptor for better error handling
+api.interceptors.request.use(
+  (config) => {
+    // Add any auth tokens if available
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Add response interceptor for better error handling
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 405) {
+      console.error(
+        "Method not allowed. Endpoint might not support this operation:",
+        {
+          url: error.config.url,
+          method: error.config.method,
+        }
+      );
+    }
+    return Promise.reject(error);
+  }
+);
 
 // Projects :
 export const getProjects = async () => {
@@ -138,8 +174,16 @@ export const createUser = async (user) => {
 };
 
 export const registerUser = async (user) => {
-  const response = await api.post("/users/register", user);
-  return response.data;
+  try {
+    const response = await api.post("/register", user);
+    return response.data;
+  } catch (error) {
+    console.error("Registration failed:", {
+      status: error.response?.status,
+      message: error.response?.data?.message || error.message,
+    });
+    throw error;
+  }
 };
 export const updateUser = async (id, user) => {
   const response = await api.put(`/users/${id}`, user);
@@ -151,8 +195,20 @@ export const deleteUser = async (id) => {
 };
 
 export const loginUser = async (user) => {
-  const response = await api.post("/users/login", user);
-  return response.data;
+  try {
+    const response = await api.post("/login", user);
+    if (response.data.token) {
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+    }
+    return response.data;
+  } catch (error) {
+    console.error("Login request failed:", {
+      status: error.response?.status,
+      message: error.response?.data?.message || error.message,
+    });
+    throw error;
+  }
 };
 
 export const logoutUser = async () => {
