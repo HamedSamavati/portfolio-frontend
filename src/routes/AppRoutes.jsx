@@ -37,7 +37,7 @@ function AppRoutes() {
         <Route
           path="/admin"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute requireAdmin={true}>
               <AdminLayout />
             </ProtectedRoute>
           }
